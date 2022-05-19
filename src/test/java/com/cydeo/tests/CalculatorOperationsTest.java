@@ -12,6 +12,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class CalculatorOperationsTest {
 
     AppiumDriver<MobileElement> driver;
@@ -51,6 +53,14 @@ public class CalculatorOperationsTest {
         MobileElement equals = driver.findElement(MobileBy.AccessibilityId("equals"));
         equals.click();
 
+        MobileElement result = driver.findElement(MobileBy.id("com.google.android.calculator:id/result_final"));
+
+        String actResult = result.getText();
+        System.out.println("actResult = " + actResult);
+
+        int expResult = 9;
+
+        assertEquals(expResult, Integer.parseInt(actResult));
 
 
     }
