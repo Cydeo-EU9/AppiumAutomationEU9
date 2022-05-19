@@ -3,6 +3,8 @@ package com.cydeo.tests;
 import com.cydeo.pages.CalculatorPage;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class CalculatorPOMTest {
 
     CalculatorPage calculatorPage = new CalculatorPage();
@@ -17,7 +19,10 @@ public class CalculatorPOMTest {
         calculatorPage.clickSingleDigit(8);
         calculatorPage.equals.click();
         String result = calculatorPage.result.getText();
+
         System.out.println("result = " + result);
+
+        assertEquals(40, Integer.parseInt(result) );
     }
 
 }
