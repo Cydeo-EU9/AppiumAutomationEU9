@@ -15,7 +15,9 @@ public class CalculatorPOMTest {
         calculatorPage.clickSingleDigit(5);
         calculatorPage.multiply.click();
         calculatorPage.clickSingleDigit(8);
-
+        calculatorPage.equals.click();
+        String result = calculatorPage.result.getText();
+        System.out.println("result = " + result);
     }
 
 }
