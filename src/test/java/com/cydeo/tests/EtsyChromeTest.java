@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class EtsyChromeTest extends WebTestBase {
 
@@ -20,17 +23,22 @@ public class EtsyChromeTest extends WebTestBase {
     }
 
     @Test
-    public void loginTest() {
+    public void loginTest() throws InterruptedException {
         String email = ConfigurationReader.getProperty("email");
         String password = ConfigurationReader.getProperty("password");
 
-        WebElement signIn = driver.findElement(By.xpath("//button[contains(.,'Sign in')]"));
+        driver.get("https://www.etsy.com");
+
+        WebElement signIn = driver.findElement(By.xpath("//span[contains(text(),'Sign in')]/.."));
         signIn.click();
 
         WebElement userNameField = driver.findElement(By.name("email"));
-        WebElement passwordField = driver.findElement(By.name("password"));;
+        userNameField.sendKeys(email + Keys.ENTER);
 
-        userNameField.sendKeys(email);
+        Thread.sleep(3000);
+
+        WebElement passwordField = driver.findElement(By.name("password"));
+
         passwordField.sendKeys(password + Keys.ENTER);
 
     }

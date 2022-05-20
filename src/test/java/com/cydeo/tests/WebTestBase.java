@@ -10,6 +10,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 public abstract class WebTestBase {
 
@@ -27,6 +28,7 @@ public abstract class WebTestBase {
 
         URL url = new URL("http://localhost:4723/wd/hub");
         driver = new RemoteWebDriver(url, desiredCapabilities);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
     @AfterEach
